@@ -1,14 +1,13 @@
-package com.haksoy.kotlinexample.ui.userlist
+package com.haksoy.kotlinmvvm.ui.userlist
 
 import User
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.haksoy.kotlinexample.databinding.UserItemBinding
+import com.haksoy.kotlinmvvm.databinding.UserItemBinding
 
 class UserListAdapter(private val listener: UserItemListener) :
     RecyclerView.Adapter<UserViewHolder>() {

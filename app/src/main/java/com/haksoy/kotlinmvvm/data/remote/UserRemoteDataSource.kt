@@ -1,4 +1,4 @@
-package com.haksoy.kotlinexample.data.remote
+package com.haksoy.kotlinmvvm.data.remote
 
 import UserList
 import retrofit2.Call

@@ -1,10 +1,10 @@
-package com.haksoy.kotlinexample.data
+package com.haksoy.kotlinmvvm.data
 
 import UserList
-import com.haksoy.kotlinexample.data.remote.ApiClient
-import com.haksoy.kotlinexample.data.remote.OperationCallback
-import com.haksoy.kotlinexample.data.remote.UserDataSource
-import com.haksoy.kotlinexample.data.remote.UserRemoteDataSource
+import com.haksoy.kotlinmvvm.data.remote.ApiClient
+import com.haksoy.kotlinmvvm.data.remote.OperationCallback
+import com.haksoy.kotlinmvvm.data.remote.UserDataSource
+import com.haksoy.kotlinmvvm.data.remote.UserRemoteDataSource
 
 class UserRepository() {
     val userDataSource: UserDataSource = UserRemoteDataSource(ApiClient)

@@ -1,4 +1,4 @@
-package com.haksoy.kotlinexample.data.remote
+package com.haksoy.kotlinmvvm.data.remote
 
 interface OperationCallback<T> {
     fun onSuccess(data: List<Any>?)

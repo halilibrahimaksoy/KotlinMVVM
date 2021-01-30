@@ -1,4 +1,4 @@
-package com.haksoy.kotlinexample.utlis
+package com.haksoy.kotlinmvvm.utlis
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
 

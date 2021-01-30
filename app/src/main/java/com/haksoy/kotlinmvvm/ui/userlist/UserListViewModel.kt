@@ -1,15 +1,12 @@
-package com.haksoy.kotlinexample.ui.userlist
+package com.haksoy.kotlinmvvm.ui.userlist
 
 import User
 import UserList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.haksoy.kotlinexample.data.UserRepository
-import com.haksoy.kotlinexample.data.remote.ApiClient
-import com.haksoy.kotlinexample.data.remote.OperationCallback
-import com.haksoy.kotlinexample.data.remote.UserDataSource
-import com.haksoy.kotlinexample.data.remote.UserRemoteDataSource
+import com.haksoy.kotlinmvvm.data.UserRepository
+import com.haksoy.kotlinmvvm.data.remote.OperationCallback
 
 class UserListViewModel : ViewModel() {
 

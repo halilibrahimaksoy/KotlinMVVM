@@ -1,4 +1,4 @@
-package com.haksoy.kotlinexample
+package com.haksoy.kotlinmvvm
 
 import org.junit.Test
 

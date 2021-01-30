@@ -1,4 +1,4 @@
-package com.haksoy.kotlinexample.data.remote
+package com.haksoy.kotlinmvvm.data.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

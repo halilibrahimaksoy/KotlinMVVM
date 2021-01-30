@@ -1,4 +1,4 @@
-package com.haksoy.kotlinexample.ui.userlist
+package com.haksoy.kotlinmvvm.ui.userlist
 
 import User
 import android.os.Bundle
@@ -9,11 +9,10 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.haksoy.kotlinexample.R
-import com.haksoy.kotlinexample.databinding.FragmentUserListBinding
+import com.haksoy.kotlinmvvm.R
+import com.haksoy.kotlinmvvm.databinding.FragmentUserListBinding
 
 class UserListFragment : Fragment(), UserListAdapter.UserItemListener {
     private lateinit var binding: FragmentUserListBinding

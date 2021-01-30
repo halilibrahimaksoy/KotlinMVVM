@@ -1,20 +1,9 @@
-package com.haksoy.kotlinexample
+package com.haksoy.kotlinmvvm
 
-import Name
-import User
 import android.os.Bundle
-import android.util.Log
-import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.haksoy.kotlinexample.databinding.ActivityMainBinding
-import com.haksoy.kotlinexample.ui.userlist.UserListAdapter
-import com.haksoy.kotlinexample.ui.userlist.UserListViewModel
+import com.haksoy.kotlinmvvm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

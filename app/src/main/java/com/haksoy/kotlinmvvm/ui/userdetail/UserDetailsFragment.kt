@@ -1,4 +1,4 @@
-package com.haksoy.kotlinexample.ui.userdetail
+package com.haksoy.kotlinmvvm.ui.userdetail
 
 import User
 import android.os.Bundle
@@ -6,12 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.haksoy.kotlinexample.R
-import com.haksoy.kotlinexample.databinding.FragmentUserDetailsBinding
-import kotlinx.android.synthetic.main.user_item.*
+import com.haksoy.kotlinmvvm.databinding.FragmentUserDetailsBinding
 
 class UserDetailsFragment : Fragment() {
     private lateinit var user: User

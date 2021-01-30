@@ -15,7 +15,7 @@ android {
         enabled = true
     }
     defaultConfig {
-        applicationId "com.haksoy.kotlinexample"
+        applicationId "com.haksoy.kotlinmvvm"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
