@@ -1,28 +1,28 @@
 package com.haksoy.kotlinmvvm.data.remote
 
-import UserList
+import com.haksoy.kotlinmvvm.data.entiries.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class UserRemoteDataSource(apiClient: ApiClient) :
+class UserRemoteDataSource() :
     UserDataSource {
 
-    private var call: Call<UserList>?=null
+    private var call: Call<List<User>>?=null
     private val service = ApiClient.build()
 
-    override fun retrieveUsers(count:Int, callback: OperationCallback<UserList>) {
-        call = service?.getUsers(count)
-        call?.enqueue(object : Callback<UserList>{
-            override fun onFailure(call: Call<UserList>, t: Throwable) {
+    override fun retrieveUsers(count:Int, callback: OperationCallback<List<User>>) {
+        call = service?.getUsers(1,count)
+        call?.enqueue(object : Callback<List<User>>{
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
                callback.onError(t.message)
             }
 
-            override fun onResponse(call: Call<UserList>, response: Response<UserList>) {
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                response.body()?.let {
                    if(response.isSuccessful)
-                       callback.onSuccess(it.results)
+                       callback.onSuccess(it)
                    else
                        callback.onError("Error")
                }
@@ -39,6 +39,6 @@ class UserRemoteDataSource(apiClient: ApiClient) :
 
 interface UserDataSource {
 
-    fun retrieveUsers(count:Int, callback: OperationCallback<UserList>)
+    fun retrieveUsers(count:Int, callback: OperationCallback<List<User>>)
     fun cancel()
 }

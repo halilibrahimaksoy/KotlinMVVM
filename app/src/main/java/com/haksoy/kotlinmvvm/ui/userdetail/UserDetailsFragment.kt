@@ -1,6 +1,6 @@
 package com.haksoy.kotlinmvvm.ui.userdetail
 
-import User
+import com.haksoy.kotlinmvvm.data.entiries.User
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,12 +25,11 @@ class UserDetailsFragment : Fragment() {
         binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
 
 
-        Glide.with(binding.root).load(user.picture.large).transform(CircleCrop())
-            .into(binding.userImage)
-        binding.tvFullName.text = user.name.first + user.name.last
+        binding.tvFullName.text = "${user.name} ${user.surname}"
         binding.tvEmail.text = user.email
-        binding.tvMobile.text = user.phone
-        binding.tvCell.text = user.cell
+        binding.tvMobile.text = user.number
+        binding.tvCompany.text = user.company_name
+        binding.tvDepartment.text = user.department
 
         return binding.root
     }

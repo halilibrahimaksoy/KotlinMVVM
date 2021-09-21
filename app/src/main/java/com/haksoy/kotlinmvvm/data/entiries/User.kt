@@ -1,16 +1,15 @@
+package com.haksoy.kotlinmvvm.data.entiries
+
 import java.io.Serializable
+import java.util.*
 
 data class User(
-    val gender: String,
-    val name: Name,
-    val location: Location,
+    val createdAt: Date,
+    val name: String,
+    val surname: String,
+    val number: String,
+    val department: String,
+    val company_name: String,
     val email: String,
-    val login: Login,
-    val dob: Dob,
-    val registered: Registered,
-    val phone: String,
-    val cell: String,
-    val id: Id,
-    val picture: Picture,
-    val nat: String
+    val id: String
 ) : Serializable

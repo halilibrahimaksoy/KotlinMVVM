@@ -1,11 +1,11 @@
 package com.haksoy.kotlinmvvm.data.remote
 
-import UserList
+import com.haksoy.kotlinmvvm.data.entiries.User
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface UserListService {
-    @GET("api/")
-    fun getUsers(@Query("results") results: Int, @Query("nat") nat: String = "tr"): Call<UserList>
+    @GET("contacts/")
+    fun getUsers(@Query("page") page: Int, @Query("limit") limit: Int): Call<List<User>>
 }

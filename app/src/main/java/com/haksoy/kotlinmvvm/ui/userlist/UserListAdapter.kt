@@ -1,6 +1,6 @@
 package com.haksoy.kotlinmvvm.ui.userlist
 
-import User
+import com.haksoy.kotlinmvvm.data.entiries.User
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,12 +50,8 @@ class UserViewHolder(
 
     fun bind(item: User) {
         this.user = item
-        itemBinding.name.text = item.name.first
+        itemBinding.name.text ="${item.name} ${item.surname}"
         itemBinding.speciesAndStatus.text = item.email
-        Glide.with(itemBinding.root)
-            .load(item.picture.thumbnail)
-            .transform(CircleCrop())
-            .into(itemBinding.image)
     }
 
     override fun onClick(v: View?) {

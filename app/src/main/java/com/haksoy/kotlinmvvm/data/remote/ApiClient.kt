@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val API_BASE_URL = "https://randomuser.me"
+    private const val API_BASE_URL = "https://6149854d035b3600175ba30c.mockapi.io/interview/v1/"
     private var serviceInterface: UserListService? = null
 
     fun build(): UserListService? {
