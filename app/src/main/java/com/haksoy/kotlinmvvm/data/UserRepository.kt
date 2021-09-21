@@ -7,8 +7,8 @@ import com.haksoy.kotlinmvvm.data.remote.UserRemoteDataSource
 
 class UserRepository() {
     val userDataSource: UserDataSource = UserRemoteDataSource()
-    fun fetchUsers(count: Int, callback: OperationCallback<List<User>>) {
-        userDataSource.retrieveUsers(count, callback)
+    fun fetchUsers(page: Int, count: Int, callback: OperationCallback<List<User>>) {
+        userDataSource.retrieveUsers(page, count, callback)
     }
 
 }

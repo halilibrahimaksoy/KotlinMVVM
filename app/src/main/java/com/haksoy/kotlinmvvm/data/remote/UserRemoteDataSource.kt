@@ -6,26 +6,26 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class UserRemoteDataSource() :
+class UserRemoteDataSource :
     UserDataSource {
 
-    private var call: Call<List<User>>?=null
+    private var call: Call<List<User>>? = null
     private val service = ApiClient.build()
 
-    override fun retrieveUsers(count:Int, callback: OperationCallback<List<User>>) {
-        call = service?.getUsers(1,count)
-        call?.enqueue(object : Callback<List<User>>{
+    override fun retrieveUsers(page: Int, count: Int, callback: OperationCallback<List<User>>) {
+        call = service?.getUsers(page, count)
+        call?.enqueue(object : Callback<List<User>> {
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
-               callback.onError(t.message)
+                callback.onError(t.message)
             }
 
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-               response.body()?.let {
-                   if(response.isSuccessful)
-                       callback.onSuccess(it)
-                   else
-                       callback.onError("Error")
-               }
+                response.body()?.let {
+                    if (response.isSuccessful)
+                        callback.onSuccess(it)
+                    else
+                        callback.onError("Error")
+                }
             }
 
         })
@@ -38,7 +38,6 @@ class UserRemoteDataSource() :
 }
 
 interface UserDataSource {
-
-    fun retrieveUsers(count:Int, callback: OperationCallback<List<User>>)
+    fun retrieveUsers(page: Int, count: Int, callback: OperationCallback<List<User>>)
     fun cancel()
 }
