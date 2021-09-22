@@ -79,11 +79,11 @@ class UserListViewModel : ViewModel() {
 
             override fun onSuccess(data: Any?) {
                 val temp = _users.value
-                _users.postValue(
-                    temp.let {
-                        it!! + data
-                    } as List<User>?
-                )
+                _users.postValue(temp.let { list1 ->
+                    (data as User).let { list2 ->
+                        listOf(list2) + list1!!
+                    }
+                }.toMutableList())
             }
 
         })
