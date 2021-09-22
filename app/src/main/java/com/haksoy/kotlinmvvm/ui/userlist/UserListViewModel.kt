@@ -13,7 +13,7 @@ class UserListViewModel : ViewModel() {
 
 
     private val userRepository: UserRepository = UserRepository()
-    val errorMessage = MutableLiveData<String>()
+    val messages = MutableLiveData<String>()
     val filterNameForCLF = MutableLiveData<String>("")
 
     private val _users = MutableLiveData<List<User>>().apply { value = emptyList() }
@@ -58,7 +58,7 @@ class UserListViewModel : ViewModel() {
             }
 
             override fun onError(error: String?) {
-                errorMessage.postValue(error!!)
+                messages.postValue(error!!)
             }
 
         })
@@ -73,7 +73,7 @@ class UserListViewModel : ViewModel() {
     fun addNewUser() {
         userRepository.addNewUser(object : OperationCallback<User> {
             override fun onError(error: String?) {
-                errorMessage.postValue(error!!)
+                messages.postValue(error!!)
             }
 
             override fun onSuccess(data: Any?) {
@@ -83,6 +83,7 @@ class UserListViewModel : ViewModel() {
                         listOf(newItem) + list1!!
                     }
                 }.toMutableList())
+                messages.postValue("New user added.")
             }
 
         })
@@ -91,7 +92,7 @@ class UserListViewModel : ViewModel() {
     fun deleteUser(id: String) {
         userRepository.deleteUser(id, object : OperationCallback<User> {
             override fun onError(error: String?) {
-                errorMessage.postValue(error!!)
+                messages.postValue(error!!)
             }
 
             override fun onSuccess(data: Any?) {
@@ -101,6 +102,7 @@ class UserListViewModel : ViewModel() {
                         list1!! - listOf(deletedItem)
                     }
                 }.toMutableList())
+                messages.postValue("User has been removed.")
             }
 
         })
@@ -109,7 +111,7 @@ class UserListViewModel : ViewModel() {
     fun editUser(user: User) {
         userRepository.editUser(user, object : OperationCallback<User> {
             override fun onError(error: String?) {
-                errorMessage.postValue(error!!)
+                messages.postValue(error!!)
             }
 
             override fun onSuccess(data: Any?) {
@@ -121,6 +123,7 @@ class UserListViewModel : ViewModel() {
                         }
                     }
                 }.toMutableList())
+                messages.postValue("User has been updated.")
             }
 
         })

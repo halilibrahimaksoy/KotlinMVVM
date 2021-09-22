@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.haksoy.kotlinmvvm.R
 import com.haksoy.kotlinmvvm.data.entiries.User
 import com.haksoy.kotlinmvvm.databinding.FragmentUserDetailsBinding
@@ -12,7 +12,7 @@ import com.haksoy.kotlinmvvm.ui.userlist.UserListViewModel
 
 class UserDetailsFragment : Fragment() {
 
-    private val viewModel: UserListViewModel by viewModels()
+    private val viewModel: UserListViewModel by activityViewModels()
     private lateinit var user: User
     lateinit var binding: FragmentUserDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {

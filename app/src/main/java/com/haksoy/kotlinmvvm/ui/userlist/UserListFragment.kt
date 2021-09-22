@@ -4,13 +4,12 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +23,7 @@ class UserListFragment : Fragment(), UserListAdapter.UserItemListener {
     private lateinit var binding: FragmentUserListBinding
     private lateinit var adapter: UserListAdapter
 
-    private val viewModel: UserListViewModel by viewModels()
+    private val viewModel: UserListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,9 +68,7 @@ class UserListFragment : Fragment(), UserListAdapter.UserItemListener {
             adapter.setItems(ArrayList(it))
         })
 
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        })
+
     }
 
     override fun onClickedUser(user: User) {
