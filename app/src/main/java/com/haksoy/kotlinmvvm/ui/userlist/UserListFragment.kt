@@ -1,9 +1,11 @@
 package com.haksoy.kotlinmvvm.ui.userlist
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
@@ -59,6 +61,7 @@ class UserListFragment : Fragment(), UserListAdapter.UserItemListener {
                 }
             }
         })
+
     }
 
     private fun observe() {
@@ -75,6 +78,15 @@ class UserListFragment : Fragment(), UserListAdapter.UserItemListener {
         findNavController().navigate(
             R.id.action_userListFragment_to_userDetailsFragment, bundleOf("selectedUser" to user)
         )
+    }
+
+    override fun onLongClickedUser(user: User) {
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setMessage("Are want to sure to delete this contact").setPositiveButton("Delete",
+            DialogInterface.OnClickListener { dialog, which ->
+                viewModel.deleteUser(user.id)
+            }).setCancelable(true)
+        builder.show()
     }
 
     override fun onResume() {

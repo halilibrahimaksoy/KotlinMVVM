@@ -44,7 +44,6 @@ class UserListViewModel : ViewModel() {
         }
 
     fun loadUsers(count: Int) {
-
         userRepository.fetchUsers(this.activePage, count, object : OperationCallback<List<User>> {
             override fun onSuccess(data: Any?) {
                 if (activePage != 1) {
@@ -80,8 +79,46 @@ class UserListViewModel : ViewModel() {
             override fun onSuccess(data: Any?) {
                 val temp = _users.value
                 _users.postValue(temp.let { list1 ->
-                    (data as User).let { list2 ->
-                        listOf(list2) + list1!!
+                    (data as User).let { newItem ->
+                        listOf(newItem) + list1!!
+                    }
+                }.toMutableList())
+            }
+
+        })
+    }
+
+    fun deleteUser(id: String) {
+        userRepository.deleteUser(id, object : OperationCallback<User> {
+            override fun onError(error: String?) {
+                errorMessage.postValue(error!!)
+            }
+
+            override fun onSuccess(data: Any?) {
+                val temp = _users.value
+                _users.postValue(temp.let { list1 ->
+                    (data as User).let { deletedItem ->
+                        list1!! - listOf(deletedItem)
+                    }
+                }.toMutableList())
+            }
+
+        })
+    }
+
+    fun editUser(user: User) {
+        userRepository.editUser(user, object : OperationCallback<User> {
+            override fun onError(error: String?) {
+                errorMessage.postValue(error!!)
+            }
+
+            override fun onSuccess(data: Any?) {
+                val temp = _users.value
+                _users.postValue(temp.let { list1 ->
+                    (data as User).let { new ->
+                        user.let { old ->
+                            list1!! - listOf(old) + listOf(new)
+                        }
                     }
                 }.toMutableList())
             }

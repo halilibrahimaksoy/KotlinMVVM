@@ -2,9 +2,7 @@ package com.haksoy.kotlinmvvm.data.remote
 
 import com.haksoy.kotlinmvvm.data.entiries.User
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface UserListService {
     @GET("contacts/")
@@ -12,4 +10,10 @@ interface UserListService {
 
     @POST("contacts/")
     fun addNewUser(): Call<User>
+
+    @DELETE("contacts/{Id}")
+    fun deleteUser(@Path("Id") id: String): Call<User>
+
+    @PUT("contacts/{Id}")
+    fun editUser(@Path("Id") id: String, @Body user: User): Call<User>
 }

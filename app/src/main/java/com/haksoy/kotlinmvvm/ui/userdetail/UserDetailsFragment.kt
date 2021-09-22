@@ -1,16 +1,18 @@
 package com.haksoy.kotlinmvvm.ui.userdetail
 
-import com.haksoy.kotlinmvvm.data.entiries.User
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import androidx.fragment.app.viewModels
+import com.haksoy.kotlinmvvm.R
+import com.haksoy.kotlinmvvm.data.entiries.User
 import com.haksoy.kotlinmvvm.databinding.FragmentUserDetailsBinding
+import com.haksoy.kotlinmvvm.ui.userlist.UserListViewModel
 
 class UserDetailsFragment : Fragment() {
+
+    private val viewModel: UserListViewModel by viewModels()
     private lateinit var user: User
     lateinit var binding: FragmentUserDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,13 +27,36 @@ class UserDetailsFragment : Fragment() {
         binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
 
 
-        binding.tvFullName.text = "${user.name} ${user.surname}"
-        binding.tvEmail.text = user.email
-        binding.tvMobile.text = user.number
-        binding.tvCompany.text = user.company_name
-        binding.tvDepartment.text = user.department
+        binding.tvName.setText(user.name)
+        binding.tvSurname.setText(user.surname)
+        binding.tvEmail.setText(user.email)
+        binding.tvMobile.setText(user.number)
+        binding.tvCompany.setText(user.company_name)
+        binding.tvDepartment.setText(user.department)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
 
+        setHasOptionsMenu(true)
         return binding.root
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        binding.toolbar.menu.clear()
+        binding.toolbar.inflateMenu(R.menu.user_detail_menu)
+        val newItem = binding.toolbar.menu.findItem(R.id.action_save)
+        newItem.setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener {
+            updateUser()
+            viewModel.editUser(user)
+            true
+        })
+    }
+
+    private fun updateUser() {
+        user.name = binding.tvName.text.toString()
+        user.surname = binding.tvSurname.text.toString()
+        user.company_name = binding.tvCompany.text.toString()
+        user.department = binding.tvDepartment.text.toString()
+        user.email = binding.tvEmail.text.toString()
+        user.number = binding.tvMobile.text.toString()
+    }
 }

@@ -14,4 +14,12 @@ class UserRepository() {
     fun addNewUser(callback: OperationCallback<User>) {
         userDataSource.addNewUser(callback)
     }
+
+    fun deleteUser(id: String, callback: OperationCallback<User>) {
+        userDataSource.deleteUser(id, callback)
+    }
+
+    fun editUser(user: User, callback: OperationCallback<User>) {
+        userDataSource.editUser(user, callback)
+    }
 }

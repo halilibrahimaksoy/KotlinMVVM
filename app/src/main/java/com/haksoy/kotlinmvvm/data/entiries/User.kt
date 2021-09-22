@@ -5,11 +5,11 @@ import java.util.*
 
 data class User(
     val createdAt: Date,
-    val name: String,
-    val surname: String,
-    val number: String,
-    val department: String,
-    val company_name: String,
-    val email: String,
+    var name: String,
+    var surname: String,
+    var number: String,
+    var department: String,
+    var company_name: String,
+    var email: String,
     val id: String
 ) : Serializable
