@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.haksoy.kotlinmvvm.data.UserRepository
 import com.haksoy.kotlinmvvm.data.entiries.User
 import com.haksoy.kotlinmvvm.data.remote.OperationCallback
+import java.util.*
 
 class UserListViewModel : ViewModel() {
 
@@ -26,7 +27,12 @@ class UserListViewModel : ViewModel() {
                     Transformations.switchMap(_users) { users ->
                         val filteredResult = MutableLiveData<List<User>>()
                         val filteredList = users.filter {
-                            it.name!!.lowercase().contains(searchKey.trim().toLowerCase())
+                            it.name.lowercase().contains(
+                                searchKey.trim()
+                                    .lowercase(Locale.getDefault())
+                            ) || it.surname.lowercase().contains(
+                                searchKey.trim().lowercase(Locale.getDefault())
+                            )
                         }
                         filteredResult.value = filteredList
                         filteredResult
@@ -40,7 +46,7 @@ class UserListViewModel : ViewModel() {
     fun loadUsers(count: Int) {
 
         userRepository.fetchUsers(this.activePage, count, object : OperationCallback<List<User>> {
-            override fun onSuccess(data: List<Any>?) {
+            override fun onSuccess(data: Any?) {
                 if (activePage != 1) {
                     val temp = _users.value
                     _users.postValue(temp.let { list1 ->
@@ -63,6 +69,24 @@ class UserListViewModel : ViewModel() {
     fun loadMore() {
         this.activePage++
         loadUsers(10)
+    }
+
+    fun addNewUser() {
+        userRepository.addNewUser(object : OperationCallback<User> {
+            override fun onError(error: String?) {
+                errorMessage.postValue(error!!)
+            }
+
+            override fun onSuccess(data: Any?) {
+                val temp = _users.value
+                _users.postValue(
+                    temp.let {
+                        it!! + data
+                    } as List<User>?
+                )
+            }
+
+        })
     }
 
 }

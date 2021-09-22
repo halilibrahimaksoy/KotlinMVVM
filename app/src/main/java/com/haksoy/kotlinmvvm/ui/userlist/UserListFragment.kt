@@ -45,6 +45,7 @@ class UserListFragment : Fragment(), UserListAdapter.UserItemListener {
         observe()
 
     }
+
     private fun setupRecyclerView() {
         adapter = UserListAdapter(this)
         binding.usrsRv.layoutManager = LinearLayoutManager(requireContext())
@@ -97,6 +98,12 @@ class UserListFragment : Fragment(), UserListAdapter.UserItemListener {
                 viewModel.filterNameForCLF.postValue(newText)
                 return true
             }
+        })
+
+        val newItem = binding.toolbar.menu.findItem(R.id.action_new)
+        newItem.setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener {
+            viewModel.addNewUser()
+            true
         })
     }
 }
